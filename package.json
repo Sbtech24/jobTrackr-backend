@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "bun --watch index.js",
-    "build": "bun build index.ts ",
+    "build": "echo \"skip build\"",
     "start": "bun run index.js",
     "migrate:create": "node-pg-migrate create",
     "migrate:up": "node-pg-migrate up",
