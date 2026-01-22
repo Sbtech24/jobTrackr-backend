@@ -52,6 +52,6 @@ app.use("/api/v1/user", AuthMiddleWare, userRoutes);
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-app.listen(process.env.PORT, async () => {
+app.listen(process.env.PORT || 4000, async () => {
   console.log(`Server is Running on port ${process.env.PORT}`);
 });
