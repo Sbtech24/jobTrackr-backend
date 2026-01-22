@@ -19,7 +19,7 @@ import swaggerSpec from "./swagger";
 dotenv.config();
 
 const app = express();
-
+const PORT = process.env.PORT || 5000;
 
 // cors
 app.use(
@@ -52,6 +52,6 @@ app.use("/api/v1/user", AuthMiddleWare, userRoutes);
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-app.listen(process.env.PORT || 4000, async () => {
-  console.log(`Server is Running on port ${process.env.PORT}`);
+app.listen(PORT, async () => {
+  console.log(`Server is Running on port ${PORT}`);
 });
