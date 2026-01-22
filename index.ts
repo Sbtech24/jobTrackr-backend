@@ -24,11 +24,10 @@ const Port = process.env.PORT || 5000;
 // cors
 app.use(
   cors({
-    origin: ["http://localhost:3000"],
-    optionsSuccessStatus: 200,
+    origin: true,
     credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"],
+    // methods: ["GET", "POST", "PUT", "DELETE"],
+    // allowedHeaders: ["Content-Type", "Authorization"],
   }),
 );
 
@@ -43,6 +42,13 @@ app.use(limiter);
 
 // middleware for cookies
 app.use(cookieParser());
+
+app.get("/", (_req, res) => {
+  res.status(200).json({
+    status: "ok",
+    service: "jobTrackr-backend",
+  });
+});
 
 // Routes
 app.use("/api/v1/auth", authRoutes);
