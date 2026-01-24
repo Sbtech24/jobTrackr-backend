@@ -5,7 +5,7 @@ const router = express.Router()
 
 router.route("/").post(addJob).get(getAllJobs)
 
-router.route("/:id").get(getSingleJob).put(updateJob).delete(deleteJob)
+router.route("/:id").get(getSingleJob).patch(updateJob).delete(deleteJob)
 
 
 export default router

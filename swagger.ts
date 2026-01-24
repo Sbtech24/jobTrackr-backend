@@ -356,7 +356,7 @@ import swaggerJsDoc from "swagger-jsdoc"
  *         description: Unauthorized
  *       500:
  *         description: Internal server error
- *   put:
+ *   patch:
  *     summary: Update a job
  *     tags: [Jobs]
  *     security:
