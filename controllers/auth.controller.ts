@@ -92,6 +92,8 @@ export async function Login(req: Request, res: Response, next: NextFunction) {
       httpOnly: true,
       maxAge: 24 * 60 * 60 * 1000,
       sameSite: "none",
+      secure:true,
+      path: "/",
     });
 
     return res.status(201).json({ accessToken });
@@ -154,6 +156,9 @@ export async function Logout(
   res.clearCookie("jwt",{
       httpOnly: true,
       maxAge: 24 * 60 * 60 * 1000,
+      sameSite: "none",
+      secure:true,
+      path: "/",
     })
     res.status(200).json({success: true,message: "Logout successful"})
 
