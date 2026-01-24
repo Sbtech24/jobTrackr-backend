@@ -10,11 +10,8 @@ import cookieParser from "cookie-parser";
 import { AuthMiddleWare } from "./middlewares/AuthMiddleware";
 import userRoutes from "./routes/users.routes";
 import { limiter } from "./middlewares/RateLimiterMiddleware";
-import swaggerUi from "swagger-ui-express"
+import swaggerUi from "swagger-ui-express";
 import swaggerSpec from "./swagger";
-
-
-
 
 dotenv.config();
 
@@ -24,11 +21,7 @@ const Port = process.env.PORT || 5000;
 // cors
 app.use(
   cors({
-    origin: [
-      "https://job-trackr-nu.vercel.app/",
-      "http://localhost:3000"
-      
-    ],
+    origin: ["https://job-trackr-nu.vercel.app/"],
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
@@ -43,8 +36,6 @@ app.use(morgan("combined"));
 
 // Rate limit middleware
 app.use(limiter);
-
-
 
 // middleware for cookies
 app.use(cookieParser());
@@ -61,8 +52,7 @@ app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/jobs", AuthMiddleWare, jobRoutes);
 app.use("/api/v1/user", AuthMiddleWare, userRoutes);
 
-
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.listen(Port, async () => {
   console.log(`Server is Running on port ${Port}`);
