@@ -29,6 +29,8 @@ app.use(
       "https://job-trackr-nu.vercel.app/",
     ],
     credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   }),
 );
 
