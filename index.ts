@@ -24,13 +24,15 @@ const Port = process.env.PORT || 5000;
 // cors
 app.use(
   cors({
-    origin: true,
+    origin: [
+      "http://localhost:3000",
+      "https://job-trackr-nu.vercel.app/",
+    ],
     credentials: true,
-    // methods: ["GET", "POST", "PUT", "DELETE"],
-    // allowedHeaders: ["Content-Type", "Authorization"],
   }),
 );
 
+// Express 5–safe preflight handler
 app.options(/.*/, cors());
 // Middleware
 app.use(express.json());
