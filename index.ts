@@ -26,7 +26,8 @@ app.use(
   cors({
     origin: [
       "https://job-trackr-nu.vercel.app",
-      "http://localhost:3000"
+      "http://localhost:3000",
+      "http://localhost:3001"
       
     ],
     credentials: true,
