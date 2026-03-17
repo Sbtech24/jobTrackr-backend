@@ -38,7 +38,15 @@ export async function RegisterUser(
       success: true,
       message: `User ${result.username} created successfully`,
     });
-  } catch (err) {
+  } catch (err:any) {
+    console.error("REGISTER ERROR:", err); 
+
+  
+    if (err.code === "23505") {
+      return res.status(400).json({ message: "Email already exists" });
+    }
+
+
     next(err);
     return res.status(500).json({ message: "Internal server error" });
   }
