@@ -9,9 +9,11 @@ import { initUserTable } from "./models/initUserTableDb";
 import cookieParser from "cookie-parser";
 import { AuthMiddleWare } from "./middlewares/AuthMiddleware";
 import userRoutes from "./routes/users.routes";
+import OverviewRoutes from "./routes/overview.routes"
 import { limiter } from "./middlewares/RateLimiterMiddleware";
 import swaggerUi from "swagger-ui-express"
 import swaggerSpec from "./swagger";
+import { Overview } from "./controllers/overview.controller";
 
 
 
@@ -61,6 +63,7 @@ app.get("/", (_req, res) => {
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/jobs", AuthMiddleWare, jobRoutes);
 app.use("/api/v1/user", AuthMiddleWare, userRoutes);
+app.use("/api/v1/overview", AuthMiddleWare, Overview);
 
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
