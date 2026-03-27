@@ -1,6 +1,7 @@
 import type { Request, Response,NextFunction } from "express";
 import { conn } from "../config/db";
 import type { AuthRequest } from "../middlewares/AuthMiddleware";
+import { getPagination } from "../utils/Pagination";
 
 
 export async function addJob(req:AuthRequest,res:Response,next:NextFunction){
@@ -37,12 +38,19 @@ export async function addJob(req:AuthRequest,res:Response,next:NextFunction){
 }
 export async function getAllJobs(req:AuthRequest,res:Response,next:NextFunction){
     try{
+      
         const user = req.user.id
+        const {page,size} = req.query
+      
+        const {limit,offset} = getPagination(page as string | undefined,size as string | undefined)
+
+
         if(!user){
             return res.status(401).json({message:"Unauthorized access"})
         }
-        const query = `SELECT * from jobs Where user_id = $1`
-        const result  = await conn.query(query,[user])
+       
+        const query = `SELECT id,title,company,status,description,date_applied from jobs Where user_id = $1 LIMIT $2 OFFSET $3`
+        const result  = await conn.query(query,[user,limit,offset])
         const created  = result.rows
 
         if(created.length === 0 ){
