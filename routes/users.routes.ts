@@ -1,10 +1,11 @@
 import express from "express"
-import { getProfile } from "../controllers/users.controller"
+import { getProfile, UploadProfile } from "../controllers/users.controller"
+import upload from "../middlewares/upload"
 
 
 const router = express.Router()
 
 router.route("/me").get(getProfile)
-// user route to upload prfile picture(/profile-pic)
-// user route (put request to update user profile: firstname,email,profile-picture)
+router.route("/upload-profile").post(upload.single("image"),UploadProfile)
+
 export default router
